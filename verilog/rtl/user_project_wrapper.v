@@ -78,11 +78,56 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
+    wire clk;
+    //wire rst;
+
+    wire [`MPRJ_IO_PADS-1:0] io_in;
+    wire [`MPRJ_IO_PADS-1:0] io_out;
+    wire [`MPRJ_IO_PADS-1:0] io_oeb;
+    
+    //assign io_in[13] = clk;
+    
+   //wire [7:0] in;
+    //wire clk,clken,rst,ld,ld1,ld2,ld3,ld4;
+    //wire[15:0] out;
+    
+    //assign io_out[36:21] = out ;
+    //assign io_oeb[36:21] = 16'b0; 
+    
+    //assign io_in[12:5] = in;
+    //assign io_in[14] = rst;
+    //assign io_in[15] = clken;
+    //assign io_in[16] = ld1;
+    //assign io_in[17] = ld2;
+    //assign io_in[18] = ld3;
+    //assign io_in[19] = ld4;
+    //assign io_in[20] = ld;
+    
+    //assign io_oeb[20:5] = 16'b1111111111111111;
+
+mac mprj(
+`ifdef USE_POWER_PINS
+	.vccd1(vccd1),	// User area 1 1.8V power
+	.vssd1(vssd1),	// User area 1 digital ground
+`endif
+    .in(io_in[12:5]),
+    .clk(io_in[13]),
+    .clken(io_in[15]),
+    .rst(io_in[14]),
+    .ld(io_in[20]),
+    .ld1( io_in[18]),
+    .ld2(io_in[17]),
+    .ld3(io_in[18]),
+    .ld4(io_in[19]),
+    .out(io_out[36:21]),
+    );
+    
+    
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-user_proj_example mprj (
+/*user_proj_example mprj (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
@@ -117,7 +162,6 @@ user_proj_example mprj (
     // IRQ
     .irq(user_irq)
 );
-
+*/
 endmodule	// user_project_wrapper
-
 `default_nettype wire
