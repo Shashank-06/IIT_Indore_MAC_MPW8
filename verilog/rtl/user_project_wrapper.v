@@ -84,27 +84,7 @@ module user_project_wrapper #(
     wire [`MPRJ_IO_PADS-1:0] io_in;
     wire [`MPRJ_IO_PADS-1:0] io_out;
     wire [`MPRJ_IO_PADS-1:0] io_oeb;
-    
-    //assign io_in[13] = clk;
-    
-   //wire [7:0] in;
-    //wire clk,clken,rst,ld,ld1,ld2,ld3,ld4;
-    //wire[15:0] out;
-    
-    //assign io_out[36:21] = out ;
-    //assign io_oeb[36:21] = 16'b0; 
-    
-    //assign io_in[12:5] = in;
-    //assign io_in[14] = rst;
-    //assign io_in[15] = clken;
-    //assign io_in[16] = ld1;
-    //assign io_in[17] = ld2;
-    //assign io_in[18] = ld3;
-    //assign io_in[19] = ld4;
-    //assign io_in[20] = ld;
-    
-    //assign io_oeb[20:5] = 16'b1111111111111111;
-
+ 
 mac mprj(
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
@@ -119,49 +99,8 @@ mac mprj(
     .ld2(io_in[17]),
     .ld3(io_in[18]),
     .ld4(io_in[19]),
-    .out(io_out[36:21]),
+    .out(io_out[36:21])
     );
-    
-    
-/*--------------------------------------*/
-/* User project is instantiated  here   */
-/*--------------------------------------*/
-
-/*user_proj_example mprj (
-`ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-`endif
-
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
-
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
-
-    // IRQ
-    .irq(user_irq)
-);
-*/
+  
 endmodule	// user_project_wrapper
 `default_nettype wire

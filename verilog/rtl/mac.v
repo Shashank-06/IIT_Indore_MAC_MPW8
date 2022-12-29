@@ -10,10 +10,10 @@ module mac(
     input [7:0] in,
     input clk,clken,rst,ld,ld1,ld2,ld3,ld4,
     output[15:0] out,
-    output [15:0] io_oeb
+    //output [15:0] io_oeb
     );
     
-    assign io_oeb=16'b0;
+    //assign io_oeb=16'b0;
     reg[7:0] i1,i2,i3,i4;
     wire [7:0] mac1_in1,mac1_in2,mac2_in1,mac2_in2;
     wire [15:0] mid;
